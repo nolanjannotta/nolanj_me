@@ -16,7 +16,8 @@ FROM gcr.io/distroless/base-debian12
 
 
 WORKDIR /app
-COPY --from=builder /build/personal_go_server .
+COPY --from=builder /build/nolanj_me .
+COPY --from=builder /build/static ./static
 # COPY --from=builder /build/.env ./.env  
 
 
@@ -26,12 +27,12 @@ COPY --from=builder /build/personal_go_server .
 
 
 EXPOSE 8080
-EXPOSE 23234
+# EXPOSE 23234
 
 
 
 
 
-CMD ["/app/personal_go_server"]
+CMD ["/app/nolanj_me"]
 
 

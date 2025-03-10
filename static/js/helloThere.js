@@ -1,4 +1,3 @@
-
 // credit goes to https://www.bram.us/2022/02/13/log-images-to-the-devtools-console-with-console-image/
 
 const helloThere =

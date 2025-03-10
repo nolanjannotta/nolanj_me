@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/charmbracelet/log"
@@ -20,18 +21,12 @@ func newServer() *http.Server {
 
 	mux := http.NewServeMux()
 
-	// var staticFS, err = fs.Sub(static, "static")
+	fs := http.FileServer(http.Dir("static"))
+	fmt.Println(fs)
 
-	// if err != nil {
-	// 	panic(err)
-	// }
+	mux.Handle("GET /", fs)
 
-	// fs := http.FileServer(http.FS(staticFS))
-
-	// mux.Handle("/", fs)
-	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-
-	mux.HandleFunc("GET /health", health)
+	mux.HandleFunc("GET /health", healthCheck)
 
 	// mux.HandleFunc("POST /email", handleEmail)
 	// mux.HandleFunc("GET /{page}", subPageHandler)
@@ -48,6 +43,12 @@ func newServer() *http.Server {
 func main() {
 	srv := newServer()
 	Start(srv)
+}
+
+func healthCheck(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("healthy")
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("HEALTHY"))
 }
 
 // type Email struct {
