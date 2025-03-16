@@ -32,7 +32,7 @@ func newServer() *http.Server {
 	mux.Handle("GET /", fs)
 
 	mux.HandleFunc("GET /health", healthCheck)
-	mux.HandleFunc("GET /ip/{ip}", handleIPDirection)
+	mux.HandleFunc("GET /distanceToLa/{ip}", handleIPDirection)
 	// mux.HandleFunc("POST /email", handleEmail)
 	// mux.HandleFunc("GET /{page}", subPageHandler)
 
@@ -83,24 +83,23 @@ func handleIPDirection(w http.ResponseWriter, r *http.Request) {
 	clientLatLon, err := http.Get(fmt.Sprint("http://ip-api.com/json/", clientIp))
 	clientLocation := ClientLocationResponse{}
 	if err != nil {
-		w.Write([]byte("failed to get latitude and longitude"))
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
 	defer clientLatLon.Body.Close()
+
 	body, err := io.ReadAll(clientLatLon.Body)
-
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	err = json.Unmarshal(body, &clientLocation)
-	if err != nil {
+	if err := json.Unmarshal(body, &clientLocation); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+
 	if clientLocation.Status == "fail" {
 		w.WriteHeader(http.StatusBadRequest)
 		return

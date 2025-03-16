@@ -11,7 +11,7 @@ async function getDistance() {
   const clientIPJson = await clientIPResp.json()
   // console.log(clientIPJson)
 
-  const response = await fetch(window.location.href + "ip/" + clientIPJson.ip)
+  const response = await fetch(window.location.href + "distanceToLa/" + clientIPJson.ip)
   const json = await response.json()
 
   element.textContent = json.distance.toFixed(2) + " km " + json.direction
