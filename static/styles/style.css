@@ -33,6 +33,7 @@ body {
     transform: skewY(2.5deg);
     line-height: 1.6;
     background-color:  rgb(250, 250, 250);
+    
 
 }
 
@@ -164,6 +165,11 @@ footer {
     /* font-family: "Mrs Saint Delafield", cursive; */
     font-size: 35px;
     font-style: normal;
+    
+}
+
+.underline {
+    text-decoration: underline;
 }
 
 
