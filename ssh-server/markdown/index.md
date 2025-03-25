@@ -7,7 +7,7 @@ NOLAN JANNOTTA
 
 ⊚ ABOUT
 
-Hello there! I'm Nolan, I like to make things both digital and physical. I'm a self taught programmer who loves learning and experimenting. Very eager to contribute to the world in anyway I can.
+Hello there! I'm Nolan, I like to make things both digital and physical. I'm a self taught programmer who loves learning and experimenting.
 
 Some of my interests include blockchain, coding, terminal apps, generative art, AI, minimal design, jazz, metal working etc.
 
@@ -16,10 +16,11 @@ life goal: Build cool things that people enjoy.
 
 ---
 
-Are you tired of awesome terminal UIs? Great news, this page is also available on your favorite web browser! Simply type ********.*** [TODO] into your search bar and hit enter.
+Are you tired of terminal UIs? 
+This information is also available in your web browser. Just paste `nolanj.me` in your search bar and press enter.
 
 
-Thanks for checking it out!
+Thanks for stopping by.
 
 -Nolan
 
