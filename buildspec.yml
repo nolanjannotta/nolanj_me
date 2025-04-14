@@ -1,0 +1,15 @@
+version: 0.2                        # AWS CodeBuild spec file version
+phases:
+  install:
+    runtime-versions:
+      python: 3.8                   # Use Python 3.8 runtime (not required unless you're using Python tooling)
+  build:
+    commands:
+      - echo "Triggering deployment on EC2 via SSM"
+      - aws ssm send-command \     # Send a remote command using AWS Systems Manager
+          --document-name "AWS-RunShellScript" \
+          --comment "Trigger EC2 Docker deploy" \
+          --instance-ids "$INSTANCE_ID" \          # 👈 Replace with your EC2 instance ID
+          --parameters commands=[" /home/ubuntu/bash/startContainer.sh nolanj-me ."] \
+          --region us-west-2 \                          # 👈 Replace with your AWS region
+          --output text
